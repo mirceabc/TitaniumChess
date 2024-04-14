@@ -19,6 +19,8 @@ if(APPLE)
     add_executable(TitaniumChess MACOSX_BUNDLE ${TITANIUM_CHESS_ICON}
         src/glad.c
         src/main.cpp
+        src/input/InputManager.cpp
+        
         include/imgui/imgui.cpp
         include/imgui/imgui_draw.cpp
         include/imgui/imgui_demo.cpp
@@ -46,8 +48,8 @@ find_package(glfw3 3.4 REQUIRED)
 find_package(OpenGL REQUIRED)
 find_package(glm CONFIG REQUIRED)
 
-target_include_directories(TitaniumChess PRIVATE include)
-target_include_directories(TitaniumChess PRIVATE include/imgui)
+target_include_directories(TitaniumChess PRIVATE include/) # TitaniumChess
+target_include_directories(TitaniumChess PRIVATE include/imgui) # ImGui
 
 if(APPLE)
     target_link_libraries(TitaniumChess "-framework Cocoa")
