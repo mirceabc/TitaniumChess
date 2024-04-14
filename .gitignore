@@ -1,0 +1,23 @@
+# Executables
+/bin
+
+# Build
+/build
+
+# Test
+/tests
+
+# Visual Studio Code
+.vscode/
+
+# macOS
+**/.DS_Store
+**.AppleDouble
+**.LSOverride
+
+# Compiled Object files
+*.o
+*.a
+*.so
+*.out
+*.exe
