@@ -11,64 +11,39 @@
  * See the accompanying LICENSE file for the complete text of the license.
  */
 
-#ifdef __APPLE__ // For MacOS
-    #define GL_SILENCE_DEPRECATION
-#endif // __APPLE__
+#ifdef __APPLE__               // For MacOS
+#define GL_SILENCE_DEPRECATION // To silence deprecation warnings on MacOS
+#endif                         // __APPLE__
 
 #define GLFW_INCLUDE_NONE // We don't want GLFW to include OpenGL headers not to conflict with GLAD
 
 #include <glad/glad.h>
 #include <GLFW/glfw3.h>
 #include <iostream>
+#include "renderer/Core.h"
+#include "renderer/WindowManager.h"
 #include "input/InputManager.h"
+#include "settings/SettingsManager.h"
 
-int main(int argc, char** argv) {
+int main(int argc, char **argv)
+{
+    // Create an instance of the Core class
+    Core core;
 
-    // Initialize GLFW
-    if(!glfwInit()){
-        std::cerr << "Failed to initialize GLFW" << std::endl;
-        return EXIT_FAILURE;
-    }
-
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MAJOR, 4);
-    glfwWindowHint(GLFW_CONTEXT_VERSION_MINOR, 1);
-    glfwWindowHint(GLFW_OPENGL_PROFILE, GLFW_OPENGL_CORE_PROFILE);
-
-#ifdef __APPLE__ // For MacOS
-    glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
-#endif // __APPLE__
-
-    GLFWwindow* window = glfwCreateWindow(800, 600, "Titanium Chess", nullptr, nullptr);
-    if(!window){
-        std::cerr << "Failed to create GLFW window" << std::endl;
-        glfwTerminate();
-        return EXIT_FAILURE;
-    }
-    glfwMakeContextCurrent(window);
-
-    if(!gladLoadGLLoader((GLADloadproc)glfwGetProcAddress)){
-        std::cerr << "Failed to initialize GLAD" << std::endl;
-        return EXIT_FAILURE;
-    }
-
-    glViewport(0, 0, 800, 600);
+    // Create an instance of the SettingsManager class
+    SettingsManager settingsManager;
+    
+    // Create an instance of the WindowManager class
+    WindowManager windowManager(settingsManager);
+   
+    // Create a window using the settings manager
+    GLFWwindow *window = windowManager.createGLFWWindow();
 
     // Create an instance of the InputManager class
     InputManager inputManager(window);
 
-    while(!glfwWindowShouldClose(window)){
-        glfwPollEvents();
-        
-        
-        // Process the input
-        inputManager.processInput();
+    // Core Main loop
+    core.run(window, inputManager);
 
-        glClearColor(0.2f, 0.3f, 0.3f, 1.0f);
-
-
-        glfwSwapBuffers(window);
-    }
-
-    glfwTerminate();
     return EXIT_SUCCESS;
 }
