@@ -1,4 +1,4 @@
-# TitaniumChess
+# TitaniumChess  ![TitaniumChess](/assets/icons/TitaniumChess.ico)
 
 TitaniumChess is a chess game developed in OpenGL for macOS, designed to facilitate learning in graphic programming.
 
@@ -83,4 +83,4 @@ For additional support or questions, you can reach out to us via [GitHub discuss
 
 ## License
 
-TitaniumChess is licensed under the [PRIVATE LICENSE](LICENSE). See the [PRIVATE](LICENSE) file for more details.
+TitaniumChess is licensed under the [PRIVATE LICENSE](LICENSE). See the [LICENSE](LICENSE) file for more details.
