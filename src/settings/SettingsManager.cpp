@@ -4,7 +4,7 @@
 SettingsManager::SettingsManager()
 {
     getDefaultMonitorsWithResolution();
-    SaveDefaultSettingsFile("settings.ini");
+    LoadSettingsFile("settings.ini");
 }
 
 // Destructor

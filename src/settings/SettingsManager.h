@@ -67,12 +67,17 @@ private:
         }
 
         // Check if the file already exists
+        // TODO: Check if the file integrity is correct
         std::filesystem::path filePath = gameDir / filename;
-        // if (std::filesystem::exists(filePath))
-        // {
-        //     std::cerr << "Fișierul " << filePath << " există deja. Nu se poate crea din nou." << std::endl;
-        //     return;
-        // }
+        if (std::filesystem::exists(filePath))
+        {
+            std::cerr << "Fișierul " << filePath << " există deja. Nu se poate crea din nou." << std::endl;
+            return;
+        }
+        else
+        {
+            // TODO Chech file integrity
+        }
 
         // Write the default settings to the file
         std::ofstream file(filePath);
@@ -96,9 +101,53 @@ private:
         }
     }
 
-    // TODO: Load Settings File
+    // Load Settings File
     void LoadSettingsFile(const std::string &filename)
     {
+        // Check if the directory exists
+        std::filesystem::path documentsDir = std::filesystem::path(getenv("HOME")) / "Documents";
+        if (!std::filesystem::exists(documentsDir))
+        {
+            std::cerr << "Directorul \"Documente\" nu există!" << std::endl;
+            return;
+        }
+
+        // Check if the directory exists
+        std::filesystem::path gameDir = documentsDir / "My Games" / "TitaniumChess";
+        if (!std::filesystem::exists(gameDir))
+        {
+            SaveDefaultSettingsFile("settings.ini");
+            return;
+        }
+
+        // Check if the file already exists
+        std::filesystem::path filePath = gameDir / filename;
+        if (std::filesystem::exists(filePath))
+        {
+           if (CheckSettingsFile("settings.ini") == true)
+           {
+                // Load the settings
+                mINI::INIFile file(filePath);
+                mINI::INIStructure ini;
+                file.read(ini);
+
+                setWidth(std::stoi(ini["Display"]["resolutionWidth"]));
+                setHeight(std::stoi(ini["Display"]["resolutionHeight"]));
+                setRefreshRate(std::stoi(ini["Display"]["refreshRate"]));
+                setFullscreen(std::stoi(ini["Display"]["fullscreen"]));
+                setVSync(std::stoi(ini["Display"]["vSync"]));
+           }
+        }
+        else
+        {
+            SaveDefaultSettingsFile("settings.ini");
+            return;
+        }
+    }
+
+    bool CheckSettingsFile(const std::string &filename)
+    {
+        return true;
     }
 
 public:
@@ -109,40 +158,36 @@ public:
     ~SettingsManager();
 
     // GET Width
-    int getWidth()
-    {
-        return width;
-    }
+    int getWidth(){return width;}
     // GET Height
-    int getHeight()
-    {
-        return height;
-    }
-    // GET Title
-    const char *getTitle()
-    {
-        return title;
-    }
-    // GET VSync
-    bool getVSync()
-    {
-        return vSync;
-    }
-    // GET Fullscreen
-    bool getFullscreen()
-    {
-        return fullscreen;
-    }
-    // GET Monitor
-    GLFWmonitor *getMonitor()
-    {
-        return monitor;
-    }
+    int getHeight(){return height;}
     // GET Refresh Rate
-    int getRefreshRate()
-    {
-        return refreshRate;
-    }
+    int getRefreshRate(){return refreshRate;}
+    // GET Fullscreen
+    bool getFullscreen(){return fullscreen;}
+    // GET VSync
+    bool getVSync(){return vSync;}
+
+
+    // GET Monitor
+    GLFWmonitor *getMonitor(){return monitor;}
+
+    // GET Title
+    const char *getTitle(){return title;}
+
+
+    // SET Width
+    void setWidth(int w){width = w;}
+    // SET Height
+    void setHeight(int h){height = h;}
+    // SET Refresh Rate
+    void setRefreshRate(int hz){refreshRate = hz;}
+    // SET Fullscreen
+    void setFullscreen(bool fs){fullscreen = fs;}
+    // SET VSync
+    void setVSync(bool vs){vSync = vs;}
+    // SET Monitor
+    void setMonitor(GLFWmonitor *m){monitor = m;}
 
     // GET Default Monitors with Resolutions
     std::vector<Monitor> getDefaultMonitorsWithResolution()
