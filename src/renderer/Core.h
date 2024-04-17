@@ -1,12 +1,18 @@
 #ifndef Core_H
 #define Core_H
 
-#define GLFW_INCLUDE_NONE // We don't want GLFW to include OpenGL headers not to conflict with GLAD
-
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-#include <iostream>
+#include "../utilities/CommonIncludes.h"
 #include "../input/InputManager.h"
+#include "../shaders/shaders.h"
+#include "../entities/VBO.h"
+#include "../entities/VAO.h"
+#include "../entities/EBO.h"
+
+// IMGUI
+#include "imgui/imgui.h"
+#include "imgui/backends/imgui_impl_glfw.h"
+#include "imgui/backends/imgui_impl_opengl3.h"
+// ----------------------------
 
 class Core
 {

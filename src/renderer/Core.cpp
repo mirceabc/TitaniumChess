@@ -1,15 +1,4 @@
 #include "Core.h"
-#include "../shaders/shaders.h"
-#include "../entities/VBO.h"
-#include "../entities/VAO.h"
-#include "../entities/EBO.h"
-
-// IMGUI
-#include "imgui/imgui.h"
-#include "imgui/backends/imgui_impl_glfw.h"
-#include "imgui/backends/imgui_impl_opengl3.h"
-// ----------------------------
-
 
 Core::Core()
 {

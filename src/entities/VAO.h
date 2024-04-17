@@ -1,8 +1,7 @@
 #ifndef VAO_H
 #define VAO_H
 
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
+#include "../utilities/CommonIncludes.h"
 #include "VBO.h"
 
 class VAO{

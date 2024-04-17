@@ -1,7 +1,7 @@
-#ifndef INPUTMANAGER_H
-#define INPUTMANAGER_H
+#ifndef INPUT_MANAGER_H
+#define INPUT_MANAGER_H
 
-#include <GLFW/glfw3.h>
+#include "../utilities/CommonIncludes.h"
 
 class InputManager{
     
@@ -17,4 +17,4 @@ class InputManager{
         void processInput();
 };
 
-#endif // INPUTMANAGER_H
+#endif // INPUT_MANAGER_H

@@ -1,18 +1,10 @@
 #ifndef SHADER_H
 #define SHADER_H
-#define GLFW_INCLUDE_NONE // We don't want GLFW to include OpenGL headers not to conflict with GLAD
 
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
+#include "../utilities/CommonIncludes.h"
 
-#include <glm/glm.hpp>
-#include <glm/gtc/matrix_transform.hpp>
-#include <glm/gtc/type_ptr.hpp>
-
-#include <iostream>
 #include <fstream>
 #include <sstream>
-#include <string>
 
 class Shader{
     public:

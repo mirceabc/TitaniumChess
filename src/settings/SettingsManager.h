@@ -1,14 +1,10 @@
 #ifndef SettingsManager_H
 #define SettingsManager_H
 
-#define GLFW_INCLUDE_NONE // We don't want GLFW to include OpenGL headers not to conflict with GLAD
-
-#include <GLFW/glfw3.h>
-#include <string>
-#include <vector>
+#include "../utilities/CommonIncludes.h"
 #include "mINI/ini.h"
-#include <iostream>
-#include "glad/glad.h"
+
+#include <vector>
 
 class SettingsManager
 {

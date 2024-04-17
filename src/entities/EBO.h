@@ -1,8 +1,7 @@
 #ifndef EBO_H
 #define EBO_H
 
-#include "glad/glad.h"
-#include "GLFW/glfw3.h"
+#include "../utilities/CommonIncludes.h"
 
 class EBO{
     public:

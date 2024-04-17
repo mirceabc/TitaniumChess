@@ -1,8 +1,7 @@
 #ifndef VBO_H
 #define VBO_H
 
-#include "glad/glad.h"
-#include "GLFW/glfw3.h"
+#include "../utilities/CommonIncludes.h"
 
 class VBO{
     public:
