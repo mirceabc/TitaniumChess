@@ -1,4 +1,4 @@
-#include "shaders.h"
+#include "Shaders.h"
 
 Shader::Shader(const char* vertexPath, const char* fragmentPath){
    GLuint vertexShader = loadShader(vertexPath, GL_VERTEX_SHADER);
