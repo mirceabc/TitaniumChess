@@ -2,7 +2,7 @@
 
 // Constructor
 WindowManager::WindowManager(SettingsManager &settingsMgr) : settingsManager(settingsMgr){
-    window = nullptr;
+    createGLFWWindow();
 }
 
 // Destructor

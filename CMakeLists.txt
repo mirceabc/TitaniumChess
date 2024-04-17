@@ -19,18 +19,25 @@ if(APPLE)
     add_executable(TitaniumChess MACOSX_BUNDLE ${TITANIUM_CHESS_ICON}
         src/main.cpp
         src/glad.c
+        src/shaders/shaders.cpp
+        src/entities/VBO.cpp
+        src/entities/VAO.cpp
+        src/entities/EBO.cpp
+
         src/renderer/Core.cpp
         src/renderer/WindowManager.cpp
+        
         src/settings/SettingsManager.cpp
         src/input/InputManager.cpp
-        
-        # include/imgui/imgui.cpp
-        # include/imgui/imgui_draw.cpp
-        # include/imgui/imgui_demo.cpp
-        # include/imgui/imgui_widgets.cpp
-        # include/imgui/imgui_tables.cpp
-        # include/imgui/backends/imgui_impl_opengl3.cpp
-        # include/imgui/backends/imgui_impl_glfw.cpp
+        src/utilities/fps_utils.cpp
+
+        include/imgui/imgui.cpp
+        include/imgui/imgui_draw.cpp
+        include/imgui/imgui_demo.cpp
+        include/imgui/imgui_widgets.cpp
+        include/imgui/imgui_tables.cpp
+        include/imgui/backends/imgui_impl_opengl3.cpp
+        include/imgui/backends/imgui_impl_glfw.cpp
     )
 
     set_target_properties(TitaniumChess PROPERTIES

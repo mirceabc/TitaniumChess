@@ -1,17 +1,19 @@
 #ifndef WindowManager_H
 #define WindowManager_H
 
-#define GLFW_INCLUDE_NONE // We don't want GLFW to include OpenGL headers not to conflict with GLAD
-
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-#include <iostream>
+#include "../utilities/CommonIncludes.h"
 #include "../settings/SettingsManager.h"
+
+// IMGUI
+#include "imgui/imgui.h"
+#include "imgui/backends/imgui_impl_glfw.h"
+#include "imgui/backends/imgui_impl_opengl3.h"
+// ----------------------------
 
 class WindowManager
 {
 private:
-    GLFWwindow *window;
+    GLFWwindow *window = nullptr;
     SettingsManager &settingsManager;
 
     int width = settingsManager.getWidth();
@@ -22,9 +24,7 @@ private:
     GLFWmonitor *monitor = settingsManager.getMonitor();
     int refreshRate = settingsManager.getRefreshRate();
 
-public:
-    WindowManager(SettingsManager &settingsMgr);
-    ~WindowManager();
+    static void framebuffer_size_callback(GLFWwindow *window, int width, int height) { glViewport(0, 0, width, height); }
 
     GLFWwindow *createGLFWWindow()
     {
@@ -37,7 +37,7 @@ public:
         glfwWindowHint(GLFW_OPENGL_FORWARD_COMPAT, GL_TRUE);
 #endif // __APPLE__
 
-        if(fullscreen)
+        if (fullscreen)
         {
             const GLFWvidmode *mode = glfwGetVideoMode(glfwGetPrimaryMonitor());
             width = mode->width;
@@ -45,10 +45,11 @@ public:
 
             window = glfwCreateWindow(width, height, title, glfwGetPrimaryMonitor(), nullptr);
         }
-        else{
+        else
+        {
             window = glfwCreateWindow(width, height, title, monitor, nullptr);
         }
-        
+
         if (!window)
         {
             std::cerr << "Failed to create GLFW window" << std::endl;
@@ -58,7 +59,7 @@ public:
 
         glfwMakeContextCurrent(window);
 
-        if(vSync)
+        if (vSync)
             glfwSwapInterval(1);
         else
             glfwSwapInterval(0);
@@ -69,15 +70,23 @@ public:
             return nullptr;
         }
 
-        glViewport(0, 0, width, height);
+        glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
+
+        // TEST IMGUI INIT
+        IMGUI_CHECKVERSION();
+        ImGui::CreateContext();
+        ImGui_ImplGlfw_InitForOpenGL(window, true);
+        ImGui_ImplOpenGL3_Init("#version 410");
+        // ----------------------------
 
         return window;
     }
 
-    GLFWwindow *getWindow() const
-    {
-        return window;
-    }
+public:
+    WindowManager(SettingsManager &settingsMgr);
+    ~WindowManager();
+
+    GLFWwindow *getWindow() const { return window; }
 };
 
 #endif // WindowManager_H

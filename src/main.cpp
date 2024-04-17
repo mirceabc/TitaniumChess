@@ -11,15 +11,7 @@
  * See the accompanying LICENSE file for the complete text of the license.
  */
 
-#ifdef __APPLE__               // For MacOS
-#define GL_SILENCE_DEPRECATION // To silence deprecation warnings on MacOS
-#endif                         // __APPLE__
-
-#define GLFW_INCLUDE_NONE // We don't want GLFW to include OpenGL headers not to conflict with GLAD
-
-#include <glad/glad.h>
-#include <GLFW/glfw3.h>
-#include <iostream>
+#include "utilities/CommonIncludes.h"
 #include "renderer/Core.h"
 #include "renderer/WindowManager.h"
 #include "input/InputManager.h"
@@ -36,8 +28,8 @@ int main(int argc, char **argv)
     // Create an instance of the WindowManager class
     WindowManager windowManager(settingsManager);
    
-    // Create a window using the settings manager
-    GLFWwindow *window = windowManager.createGLFWWindow();
+    // Get window using the settings manager
+    GLFWwindow *window = windowManager.getWindow();
 
     // Create an instance of the InputManager class
     InputManager inputManager(window);
