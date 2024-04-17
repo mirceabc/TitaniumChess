@@ -72,13 +72,11 @@ private:
 
         glfwSetFramebufferSizeCallback(window, framebuffer_size_callback);
 
-        // TEST IMGUI INIT
-        IMGUI_CHECKVERSION();
-        ImGui::CreateContext();
-        ImGui_ImplGlfw_InitForOpenGL(window, true);
-        ImGui_ImplOpenGL3_Init("#version 410");
-        // ----------------------------
-
+        glEnable(GL_DEPTH_TEST);
+        glEnable(GL_CULL_FACE);
+        glCullFace(GL_FRONT);
+        glFrontFace(GL_CCW);
+        
         return window;
     }
 

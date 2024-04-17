@@ -1,7 +1,7 @@
 #ifndef VAO_H
 #define VAO_H
 
-#include "../utilities/CommonIncludes.h"
+#include "../../utilities/CommonIncludes.h"
 #include "VBO.h"
 
 class VAO{

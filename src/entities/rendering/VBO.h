@@ -1,7 +1,7 @@
 #ifndef VBO_H
 #define VBO_H
 
-#include "../utilities/CommonIncludes.h"
+#include "../../utilities/CommonIncludes.h"
 
 class VBO{
     public:

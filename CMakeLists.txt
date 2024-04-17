@@ -18,12 +18,13 @@ if(APPLE)
 
     add_executable(TitaniumChess MACOSX_BUNDLE ${TITANIUM_CHESS_ICON}
         src/main.cpp
-        src/glad.c
-        src/shaders/shaders.cpp
-        src/entities/VBO.cpp
-        src/entities/VAO.cpp
-        src/entities/EBO.cpp
+        src/utilities/glad.c
+        src/shaders/Shaders.cpp
+        src/entities/rendering/VBO.cpp
+        src/entities/rendering/VAO.cpp
+        src/entities/rendering/EBO.cpp
 
+        src/entities/texture/Texture.cpp
         src/renderer/Core.cpp
         src/renderer/WindowManager.cpp
         
@@ -60,6 +61,7 @@ find_package(glm CONFIG REQUIRED)
 
 target_include_directories(TitaniumChess PRIVATE include/) # TitaniumChess
 target_include_directories(TitaniumChess PRIVATE include/imgui) # ImGui
+
 
 if(APPLE)
     target_link_libraries(TitaniumChess "-framework Cocoa")

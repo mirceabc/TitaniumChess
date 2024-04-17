@@ -1,7 +1,7 @@
 #ifndef EBO_H
 #define EBO_H
 
-#include "../utilities/CommonIncludes.h"
+#include "../../utilities/CommonIncludes.h"
 
 class EBO{
     public:

@@ -2,11 +2,13 @@
 #define Core_H
 
 #include "../utilities/CommonIncludes.h"
+#include "../utilities/fps_utils.h"
 #include "../input/InputManager.h"
-#include "../shaders/shaders.h"
-#include "../entities/VBO.h"
-#include "../entities/VAO.h"
-#include "../entities/EBO.h"
+#include "../shaders/Shaders.h"
+#include "../entities/rendering/VBO.h"
+#include "../entities/rendering/VAO.h"
+#include "../entities/rendering/EBO.h"
+#include "../entities/camera/Camera.h"
 
 // IMGUI
 #include "imgui/imgui.h"
